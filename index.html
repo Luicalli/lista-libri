@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>La mia lista di libri</title>
+
+  <style>
+    body {
+      font-family: sans-serif;
+      padding: 20px;
+      background: #f7f7f7;
+    }
+    h1 {
+      text-align: center;
+    }
+    .book {
+      background: white;
+      padding: 12px;
+      margin-bottom: 10px;
+      border-radius: 8px;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+    }
+    .book-title {
+      font-weight: bold;
+      font-size: 18px;
+    }
+    .book-author {
+      color: #555;
+    }
+  </style>
+</head>
+
+<body>
+  <h1>📚 La mia lista di libri</h1>
+
+  <div id="books"></div>
+
+  <script>
+    // Qui puoi aggiungere i tuoi libri
+    const books = [
+      { title: "Il nome della rosa", author: "Umberto Eco" },
+      { title: "1984", author: "George Orwell" },
+      { title: "Il Gattopardo", author: "Giuseppe Tomasi di Lampedusa" }
+    ];
+
+    const container = document.getElementById("books");
+
+    books.forEach(b => {
+      container.innerHTML += `
+        <div class="book">
+          <div class="book-title">${b.title}</div>
+          <div class="book-author">${b.author}</div>
+        </div>
+      `;
+    });
+  </script>
+</body>
+</html>
