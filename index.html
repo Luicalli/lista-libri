@@ -39,6 +39,27 @@
       width: 300px;
       font-size: 14px;
     }
+    
+    /* Migliora la tabella su schermi piccoli */
+    @media (max-width: 600px) {
+
+      th, td {
+        white-space: normal;   /* Permette il ritorno a capo */
+      }
+
+    /* Colonna Titolo */
+    th:nth-child(1),
+    td:nth-child(1) {
+      width: 40%;            /* circa metà della larghezza attuale */
+    }
+
+    /* Colonna Autore */
+    th:nth-child(2),
+    td:nth-child(2) {
+      width: 30%;            /* un po' più stretta */
+    }
+   }
+
   </style>
 </head>
 <body>
