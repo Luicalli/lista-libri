@@ -1,62 +1,93 @@
 <!DOCTYPE html>
-<html lang="it">
+<html>
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>La mia lista di libri</title>
-
+  <title>Lista Libri</title>
   <style>
     body {
-      font-family: sans-serif;
+      font-family: Arial, sans-serif;
       padding: 20px;
-      background: #f7f7f7;
     }
-    h1 {
-      text-align: center;
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 14px;
     }
-    .book {
-      background: white;
-      padding: 12px;
-      margin-bottom: 10px;
-      border-radius: 8px;
-      box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+
+    th, td {
+      border: 1px solid #ccc;
+      padding: 6px 8px;
+      text-align: left;
+      white-space: nowrap;
     }
-    .book-title {
-      font-weight: bold;
-      font-size: 18px;
+
+    th {
+      background-color: #f2f2f2;
+      position: sticky;
+      top: 0;
+      z-index: 2;
     }
-    .book-author {
-      color: #555;
+
+    tbody tr:nth-child(even) {
+      background-color: #fafafa;
+    }
+
+    #search {
+      margin-bottom: 15px;
+      padding: 8px;
+      width: 300px;
+      font-size: 14px;
     }
   </style>
 </head>
-
 <body>
-  <h1>📚 La mia lista di libri</h1>
 
-  <div id="books"></div>
+<h1>Lista Libri</h1>
 
-  <script>
-    // Carica il file JSON
-    fetch('libri.json')
-      .then(response => response.json())
-      .then(data => {
-        const container = document.getElementById("books");
+<input type="text" id="search" placeholder="Cerca titolo o autore...">
 
-        data.Libri.forEach(b => {
-          container.innerHTML += `
-            <div class="book">
-              <div class="book-titolo">${b.Titolo}</div>
-              <div class="book-autore">${b.Autore}</div>
-              <div class="book-genere">${b.Genere}</div>
-              <div class="book-presente">${b.Presente}</div>
-            </div>
-          `;
-        });
-      })
-      .catch(error => {
-        console.error("Errore nel caricamento del JSON:", error);
+<table id="tabellaLibri">
+  <thead>
+    <tr>
+      <th>Titolo</th>
+      <th>Autore</th>
+      <th>Genere</th>
+      <th>Presente</th>
+    </tr>
+  </thead>
+  <tbody></tbody>
+</table>
+
+<script>
+  fetch('libri.json')
+    .then(response => response.json())
+    .then(data => {
+      const tbody = document.querySelector('#tabellaLibri tbody');
+
+      data.forEach(libro => {
+        const tr = document.createElement('tr');
+        tr.innerHTML = `
+          <td>${libro.Titolo}</td>
+          <td>${libro.Autore}</td>
+          <td>${libro.Genere}</td>
+          <td>${libro.Presente}</td>
+        `;
+        tbody.appendChild(tr);
       });
-  </script>
+    });
+
+  // Ricerca in tempo reale
+  document.getElementById('search').addEventListener('input', function () {
+    const filtro = this.value.toLowerCase();
+    const righe = document.querySelectorAll('#tabellaLibri tbody tr');
+
+    righe.forEach(riga => {
+      const testo = riga.textContent.toLowerCase();
+      riga.style.display = testo.includes(filtro) ? '' : 'none';
+    });
+  });
+</script>
+
 </body>
 </html>
