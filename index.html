@@ -65,7 +65,7 @@
     .then(data => {
       const tbody = document.querySelector('#tabellaLibri tbody');
 
-      data.forEach(libro => {
+      data.Libri.forEach(libro => {
         const tr = document.createElement('tr');
         tr.innerHTML = `
           <td>${libro.Titolo}</td>
