@@ -60,6 +60,10 @@
     }
    }
 
+    .riga-presente {
+      background-color: #d8f5d1 !important;   /* verde chiaro */
+  }
+
   </style>
 </head>
 <body>
@@ -100,6 +104,12 @@
           <td>${libro.Letto1}</td>          
           <td>${libro.Presente}</td>
         `;
+
+        if (libro.Presente === "X") {
+          riga.classList.add("riga-presente");
+        }
+
+        
         tbody.appendChild(tr);
       });
     });
