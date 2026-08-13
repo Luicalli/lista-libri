@@ -46,8 +46,10 @@
         data.Libri.forEach(b => {
           container.innerHTML += `
             <div class="book">
-              <div class="book-title">${b.Titolo}</div>
-              <div class="book-author">${b.Autore}</div>
+              <div class="book-titolo">${b.Titolo}</div>
+              <div class="book-autore">${b.Autore}</div>
+              <div class="book-genere">${b.Genere}</div>
+              <div class="book-presente">${b.Presente}</div>
             </div>
           `;
         });
