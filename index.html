@@ -76,7 +76,6 @@
 <table id="tabellaLibri">
   <thead>
     <tr>
-      <th>Numero</th>
       <th>Titolo</th>
       <th>Autore</th>
        <th>Anno</th>
@@ -98,7 +97,6 @@
       data.Libri.forEach(libro => {
         const tr = document.createElement('tr');
         tr.innerHTML = `
-          <td>${libro.Numero}</td>
           <td>${libro.Titolo}</td>
           <td>${libro.Autore}</td>
           <td>${libro.Anno}</td>     
